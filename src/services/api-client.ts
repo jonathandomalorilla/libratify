@@ -6,7 +6,7 @@
 import type { Book, Loan, Member } from "@/types";
 import type { LibraryRepository, LibrarySnapshot } from "./repository";
 
-export const API_BASE_URL: string | undefined = import.meta.env.VITE_API_BASE_URL;
+export const API_BASE_URL: string | undefined = import.meta.env["VITE_API_BASE_URL"];
 
 export class ApiError extends Error {
   constructor(public status: number, message: string) {
