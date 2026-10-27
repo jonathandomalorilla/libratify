@@ -16,7 +16,7 @@ export interface Book {
   category: BookCategory;
   publicationYear: number;
   totalCopies: number;
-  coverUrl?: string;
+  coverUrl?: string | undefined;
   addedAt: string; // yyyy-MM-dd
 }
 

@@ -25,9 +25,9 @@ import type { Loan } from "@/types";
 
 type Tab = "all" | "active" | "overdue" | "returned";
 export const Route = createFileRoute("/_workspace/loans")({
-  validateSearch: (s: Record<string, unknown>): { tab?: Tab; new?: boolean } => ({
-    ...(["all", "active", "overdue", "returned"].includes(s.tab as string) ? { tab: s.tab as Tab } : {}),
-    ...(s.new === true || s.new === "true" ? { new: true } : {}),
+  validateSearch: (s: Record<string, unknown>): { tab?: Tab | undefined; new?: boolean | undefined } => ({
+    ...(["all", "active", "overdue", "returned"].includes(s["tab"] as string) ? { tab: s["tab"] as Tab } : {}),
+    ...(s["new"] === true || s["new"] === "true" ? { new: true } : {}),
   }),
   head: pageHead("Borrow & Return", "Check books out, process returns and track overdue loans."),
   component: LoansPage,

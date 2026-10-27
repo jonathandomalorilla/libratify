@@ -16,7 +16,7 @@ const HUES: Record<Book["category"], string> = {
 export const categoryColor = (c: Book["category"]) => HUES[c];
 
 /** Generated placeholder cover (no copyrighted artwork). Uses coverUrl when provided. */
-export function BookCover({ book, className }: { book: Pick<Book, "title" | "category" | "coverUrl">; className?: string }) {
+export function BookCover({ book, className }: { book: Pick<Book, "title" | "category" | "coverUrl">; className?: string | undefined }) {
   const [failed, setFailed] = useState(false);
   if (book.coverUrl && !failed) {
     return (

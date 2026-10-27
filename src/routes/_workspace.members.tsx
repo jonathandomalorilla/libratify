@@ -26,7 +26,7 @@ import { pageHead } from "@/lib/seo";
 import type { Member, MemberStatus } from "@/types";
 
 export const Route = createFileRoute("/_workspace/members")({
-  validateSearch: (s: Record<string, unknown>): { q?: string } => (typeof s.q === "string" ? { q: s.q } : {}),
+  validateSearch: (s: Record<string, unknown>): { q?: string } => (typeof s["q"] === "string" ? { q: s["q"] } : {}),
   head: pageHead("Members", "Manage library members, contact details and their active loans."),
   component: MembersPage,
 });
@@ -58,7 +58,7 @@ function MemberDialog({ open, onOpenChange, member }: { open: boolean; onOpenCha
     if (Object.keys(errs).length) return;
     const payload = { name: values.name.trim(), email: values.email.trim(), phone: values.phone.trim(), status: values.status };
     const res = member ? updateMember(member.id, payload) : addMember(payload);
-    if (!res.ok) return toast.error(res.reason);
+    if (!res.ok) { toast.error(res.reason); return; }
     toast.success(member ? "Member updated" : "Member added", { description: payload.name });
     onOpenChange(false);
   };

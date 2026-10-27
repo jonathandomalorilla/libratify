@@ -47,7 +47,7 @@ export interface SeedData {
 
 export function generateSeedData(today = new Date()): SeedData {
   const r = rng(20261027);
-  const pick = <T,>(arr: T[]) => arr[Math.floor(r() * arr.length)];
+  const pick = <T,>(arr: T[]) => arr[Math.floor(r() * arr.length)]!;
 
   const books: Book[] = [];
   let n = 1;
@@ -68,7 +68,7 @@ export function generateSeedData(today = new Date()): SeedData {
   }
 
   const members: Member[] = FIRST.map((first, i) => {
-    const last = LAST[(i * 7) % LAST.length];
+    const last = LAST[(i * 7) % LAST.length]!;
     return {
       id: `MBR-${String(i + 1).padStart(4, "0")}`,
       name: `${first} ${last}`,
@@ -85,10 +85,10 @@ export function generateSeedData(today = new Date()): SeedData {
   const weightedBook = () => {
     let x = r() * totalW;
     for (let i = 0; i < books.length; i++) {
-      x -= weights[i];
-      if (x <= 0) return books[i];
+      x -= weights[i]!;
+      if (x <= 0) return books[i]!;
     }
-    return books[books.length - 1];
+    return books[books.length - 1]!;
   };
   const activeMembers = members.filter((m) => m.status === "active");
 

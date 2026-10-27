@@ -75,10 +75,10 @@ export function monthlySeries(loans: Loan[], months = 6, now = new Date()): Repo
   const idx = new Map(series.map((s, i) => [s.key, i]));
   for (const l of loans) {
     const b = idx.get(l.borrowDate.slice(0, 7));
-    if (b !== undefined) series[b].borrowed++;
+    if (b !== undefined) series[b]!.borrowed++;
     if (l.returnDate) {
       const r = idx.get(l.returnDate.slice(0, 7));
-      if (r !== undefined) series[r].returned++;
+      if (r !== undefined) series[r]!.returned++;
     }
   }
   return series;

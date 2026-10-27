@@ -25,7 +25,7 @@ import { cn } from "@/lib/utils";
 import type { Book, BookCategory } from "@/types";
 
 export const Route = createFileRoute("/_workspace/books")({
-  validateSearch: (s: Record<string, unknown>): { q?: string } => (typeof s.q === "string" ? { q: s.q } : {}),
+  validateSearch: (s: Record<string, unknown>): { q?: string } => (typeof s["q"] === "string" ? { q: s["q"] } : {}),
   head: pageHead("Books", "Manage your library collection, copies and availability."),
   component: BooksPage,
 });
@@ -77,7 +77,7 @@ function BookDialog({ open, onOpenChange, book }: { open: boolean; onOpenChange:
       totalCopies: Number(values.totalCopies), coverUrl: values.coverUrl.trim() || undefined,
     };
     const res = book ? updateBook(book.id, payload) : addBook(payload);
-    if (!res.ok) return toast.error(res.reason);
+    if (!res.ok) { toast.error(res.reason); return; }
     toast.success(book ? "Book updated" : "Book added", { description: payload.title });
     onOpenChange(false);
   };

@@ -126,7 +126,7 @@ function Dashboard() {
                     <p className="truncate text-sm font-medium">{book.title}</p>
                     <p className="truncate text-xs text-muted-foreground">{book.author}</p>
                     <div className="mt-1.5 h-1.5 overflow-hidden rounded-full bg-muted">
-                      <div className="h-full rounded-full bg-primary" style={{ width: `${(count / popular[0].count) * 100}%` }} />
+                      <div className="h-full rounded-full bg-primary" style={{ width: `${(count / (popular[0]?.count ?? 1)) * 100}%` }} />
                     </div>
                   </div>
                   <span className="text-sm font-semibold tabular-nums">{count}</span>
